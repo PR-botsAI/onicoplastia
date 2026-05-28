@@ -66,7 +66,7 @@
   .form-card .sub{text-align:center;font-size:0.9rem;color:var(--muted);margin-bottom:30px;}
   .field{margin-bottom:20px;}
   .field label{display:block;font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:8px;font-weight:500;}
-  .field input[type=text],.field input[type=email]{width:100%;background:var(--near-black);border:1px solid var(--line);color:var(--white);font-family:'Poppins',sans-serif;font-size:0.95rem;padding:13px 15px;border-radius:2px;transition:border-color .2s ease;}
+  .field input[type=text],.field input[type=email],.field input[type=tel]{width:100%;background:var(--near-black);border:1px solid var(--line);color:var(--white);font-family:'Poppins',sans-serif;font-size:0.95rem;padding:13px 15px;border-radius:2px;transition:border-color .2s ease;}
   .field input:focus{outline:none;border-color:var(--gold);}
   .field input::placeholder{color:#555;}
   .check{display:flex;align-items:center;gap:12px;background:var(--near-black);border:1px solid var(--line);padding:14px 15px;border-radius:2px;margin-bottom:24px;}
@@ -167,6 +167,7 @@
         <p class="sub">Sin compromiso · Te avisamos cuando abramos precios y fecha</p>
         <div class="field"><label for="nombre">Nombre completo *</label><input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required></div>
         <div class="field"><label for="email">Email *</label><input type="email" id="email" name="email" placeholder="tu@email.com" required></div>
+        <div class="field"><label for="telefono">Teléfono / WhatsApp *</label><input type="tel" id="telefono" name="telefono" placeholder="(787) 000-0000" required></div>
         <div class="field"><label for="salon">Nombre del salón</label><input type="text" id="salon" name="salon" placeholder="Nombre de tu salón o negocio"></div>
         <div class="field"><label for="anos">Años en la industria</label><input type="text" id="anos" name="anos" placeholder="Ej. 3 años"></div>
         <div class="field"><label for="ciudad">Ciudad</label><input type="text" id="ciudad" name="ciudad" placeholder="¿De qué pueblo eres?"></div>
@@ -215,11 +216,13 @@
   function submitForm(){
     var nombre=document.getElementById('nombre').value.trim();
     var email=document.getElementById('email').value.trim();
+    var telefono=document.getElementById('telefono').value.trim();
     if(!nombre){alert('Por favor escribe tu nombre.');return;}
     if(!email||email.indexOf('@')<1){alert('Por favor escribe un email válido.');return;}
+    if(!telefono){alert('Por favor escribe tu teléfono o WhatsApp.');return;}
     var btn=document.getElementById('submitBtn');
     btn.disabled=true;btn.textContent='Enviando...';
-    var payload={contactName:nombre,contactEmail:email,data:{salon:document.getElementById('salon').value.trim(),anos_industria:document.getElementById('anos').value.trim(),ciudad:document.getElementById('ciudad').value.trim(),profesional_licencia:document.getElementById('licencia').checked?'Sí':'No',source:'onicoplastia.com'}};
+    var payload={contactName:nombre,contactEmail:email,contactPhone:telefono,data:{salon:document.getElementById('salon').value.trim(),anos_industria:document.getElementById('anos').value.trim(),ciudad:document.getElementById('ciudad').value.trim(),profesional_licencia:document.getElementById('licencia').checked?'Sí':'No',telefono:telefono,source:'onicoplastia.com'}};
     fetch('https://paymegpt.com/api/webhooks/flow/3299/6f60bd72a7ec259f12943eb3345ac1978f825b2b89135860e1763027814524ba',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(function(){document.getElementById('formContent').style.display='none';document.getElementById('thankyou').style.display='block';}).catch(function(){document.getElementById('formContent').style.display='none';document.getElementById('thankyou').style.display='block';});
   }
 </script>
