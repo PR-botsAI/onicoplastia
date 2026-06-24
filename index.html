@@ -3,6 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '466800425538428');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=466800425538428&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <title>Educación en Onicoplastia — Aprende el Negocio Completo | by Neycha Soto</title>
 <meta name="description" content="Aprende el proceso completo de onicoplastia y el negocio detrás. Educación profesional para técnicos de uñas en Puerto Rico — por Neycha Soto. Únete a la lista de interés.">
 <meta name="theme-color" content="#0A0A0A">
@@ -223,7 +240,7 @@
     var btn=document.getElementById('submitBtn');
     btn.disabled=true;btn.textContent='Enviando...';
     var payload={contactName:nombre,contactEmail:email,contactPhone:telefono,data:{salon:document.getElementById('salon').value.trim(),anos_industria:document.getElementById('anos').value.trim(),ciudad:document.getElementById('ciudad').value.trim(),profesional_licencia:document.getElementById('licencia').checked?'Sí':'No',telefono:telefono,source:'onicoplastia.com'}};
-    fetch('https://paymegpt.com/api/webhooks/flow/3299/6f60bd72a7ec259f12943eb3345ac1978f825b2b89135860e1763027814524ba',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(function(){document.getElementById('formContent').style.display='none';document.getElementById('thankyou').style.display='block';}).catch(function(){document.getElementById('formContent').style.display='none';document.getElementById('thankyou').style.display='block';});
+    fetch('https://paymegpt.com/api/webhooks/flow/3299/6f60bd72a7ec259f12943eb3345ac1978f825b2b89135860e1763027814524ba',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(function(){if(window.fbq){fbq('track','Lead');}document.getElementById('formContent').style.display='none';document.getElementById('thankyou').style.display='block';}).catch(function(){if(window.fbq){fbq('track','Lead');}document.getElementById('formContent').style.display='none';document.getElementById('thankyou').style.display='block';});
   }
 </script>
 </body>
